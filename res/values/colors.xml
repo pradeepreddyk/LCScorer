@@ -1,5 +1,8 @@
 <resources>
 
-    <color name="black_overlay">#66000000</color>
+    <color name="black_overlay">#66999999</color>
+    <color name="item_selected">#66660000</color>
+    <color name="background_color">#ffffffff</color>
+    <color name="button_color">#ff222222</color>
 
 </resources>

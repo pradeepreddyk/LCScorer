@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="@color/background_color"
     tools:context=".MainScreen" >
 
     <!--
@@ -15,9 +15,10 @@
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.3"
         android:gravity="center"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
+        android:text="@string/faded_backgroung_text"
         android:textColor="#33b5e5"
         android:textSize="50sp"
         android:textStyle="bold" />
@@ -31,6 +32,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true" >
+        
+
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
@@ -38,17 +41,74 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/button_color"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" >
+
+            <Button
+                android:id="@+id/add_player_button"
+                style="?buttonBarButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/add_palyer_string" />
+
+            <Button
+                android:id="@+id/start_button"
+                style="?buttonBarButtonStyle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/start_string" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/added_palyer_list_view"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:background="@color/black_overlay"
             android:orientation="horizontal"
             tools:ignore="UselessParent" >
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?buttonBarButtonStyle"
-                android:layout_width="0dp"
+            <ListView
+                android:id="@id/list_of_players_view"
+                android:layout_width="wrap_content"
+                android:layout_height="270dp" 
+                android:clickable="true"
+                android:listSelector="@color/item_selected">
+            </ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/socre_input_layout"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            tools:ignore="UselessParent" >
+
+            <TextView
+                android:id="@+id/score_limit__textview"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:keepScreenOn="true"
+                android:text="@string/score_limit_string"
+                android:textColor="#33b5e5"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/score_limit_editor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
         </LinearLayout>
     </FrameLayout>
 
