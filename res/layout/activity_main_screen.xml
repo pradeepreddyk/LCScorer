@@ -12,7 +12,7 @@
     -->
 
     <TextView
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/fullscreen_content2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha="0.3"
@@ -23,6 +23,15 @@
         android:textSize="50sp"
         android:textStyle="bold" />
 
+    <ImageView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.3"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:src="@drawable/ic_launcher" />
+
     <!--
          This FrameLayout insets its children based on system windows using
          android:fitsSystemWindows.
@@ -32,83 +41,104 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true" >
-        
-
 
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
-            style="?buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
-            android:background="@color/button_color"
             android:orientation="vertical"
             tools:ignore="UselessParent" >
-
-            <Button
-                android:id="@+id/add_player_button"
-                style="?buttonBarButtonStyle"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/add_palyer_string" />
 
             <Button
                 android:id="@+id/start_button"
                 style="?buttonBarButtonStyle"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
                 android:layout_weight="1"
+                android:onClick="startGame"
                 android:text="@string/start_string" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/added_palyer_list_view"
-            style="?buttonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent" >
-
-            <ListView
-                android:id="@id/list_of_players_view"
-                android:layout_width="wrap_content"
-                android:layout_height="270dp" 
-                android:clickable="true"
-                android:listSelector="@color/item_selected">
-            </ListView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/socre_input_layout"
-            style="?buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="top|center_horizontal"
-            android:background="@color/black_overlay"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             tools:ignore="UselessParent" >
 
-            <TextView
-                android:id="@+id/score_limit__textview"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/score_input_layout"
+                style="?buttonBarStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:keepScreenOn="true"
-                android:text="@string/score_limit_string"
-                android:textColor="#33b5e5"
-                android:textSize="30sp" />
+                android:background="@color/black_overlay"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent" >
 
-            <EditText
-                android:id="@+id/score_limit_editor"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/score_limit_textview"
+                    android:layout_width="0dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:keepScreenOn="true"
+                    android:text="@string/score_limit_string"
+                    android:textColor="#33b5e5"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/score_limit_editor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="5"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/player_name_input_layout"
+                style="?buttonBarStyle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" >
+                android:background="@color/black_overlay"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent" >
 
-                <requestFocus />
-            </EditText>
+                <EditText
+                    android:id="@+id/user_name_editor"
+                    android:layout_width="0dip"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="6"
+                    android:inputType="textPersonName" >
+
+                    <requestFocus />
+                </EditText>
+
+                <ImageButton
+                    android:id="@+id/add_player_button"
+                    style="?buttonBarButtonStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:onClick="addPlayer"
+                    android:src="@android:drawable/ic_input_add"
+                    android:text="@string/add_palyer_string" />
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/list_of_players_view"
+                android:layout_width="wrap_content"
+                android:layout_height="270dp"
+                android:clickable="true"
+                android:listSelector="@color/item_selected" >
+            </ListView>
         </LinearLayout>
     </FrameLayout>
 
