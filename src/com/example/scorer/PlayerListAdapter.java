@@ -9,36 +9,37 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
  
-public class PlayerListAdapter extends BaseAdapter {
+public class PlayerListAdapter extends ArrayAdapter<PlayerDetails> {
  
     private Activity activity;
     private ArrayList<PlayerDetails> data;
-    private static LayoutInflater inflater=null;
  
-    public PlayerListAdapter(Activity a, ArrayList<PlayerDetails> d) {
-        activity = a;
-        data=d;
-        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    Context context; 
+    int layoutResourceId;    
+    
+    public PlayerListAdapter(Context context, int layoutResourceId, ArrayList<PlayerDetails>  data) {
+        super(context, layoutResourceId, data);
+        this.layoutResourceId = layoutResourceId;
+        this.context = context;
+        this.data = data;
     }
  
     public int getCount() {
         return data.size();
     }
- 
-    public Object getItem(int position) {
-        return position;
-    }
- 
+  
     public long getItemId(int position) {
         return position;
     }
  
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
+        LayoutInflater inflater = ((Activity)context).getLayoutInflater();
         if(convertView==null)
             vi = inflater.inflate(R.layout.player_list_item, null);
  
@@ -57,16 +58,5 @@ public class PlayerListAdapter extends BaseAdapter {
         currentScore.setText(player.get(PlayerDetails.KEY_SCORE));
         return vi;
     }
-    
-    public void add(String playerName)
-    {
-    	PlayerDetails tmp = new PlayerDetails(playerName);
-    	data.add(tmp);
-    	View v = inflater.inflate(R.layout.activity_main_screen, null);
-    	ListView v1 = (ListView)v.findViewById(R.id.list_of_players_view);
-    	v1.invalidate();
-    	
-    	
-    }
-    
+        
 }

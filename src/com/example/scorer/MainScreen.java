@@ -33,7 +33,7 @@ public class MainScreen extends Activity {
         
         playerList = new ArrayList<PlayerDetails>();
         
-        playerListAdaptar = new PlayerListAdapter((Activity)this, playerList);
+        playerListAdaptar = new PlayerListAdapter(this, R.layout.player_list_item, playerList);
         
         ListView playerList = (ListView) findViewById(R.id.list_of_players_view);
     	playerList.setAdapter(playerListAdaptar);
@@ -95,7 +95,7 @@ public class MainScreen extends Activity {
     		return;
     	}
  
-    	playerListAdaptar.add(playerName);
+    	playerListAdaptar.add(new PlayerDetails(playerName));
     	
     	toast.cancel();
     	toast = Toast.makeText(this, "Player "+playerName+ " added", Toast.LENGTH_LONG);
