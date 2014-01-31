@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+ 
+    <!--  ListRow Left side Name -->
+    <LinearLayout android:id="@+id/l_name_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/image_bg"
+        android:layout_marginRight="5dip">
+        
+        <TextView 
+            android:id= "@+id/l_player_name"
+            android:layout_width="50dip"
+            android:layout_height="30dip"
+            android:text="PRAD"
+            android:textColor="#040404"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+ 
+    <!-- Current score-->
+    <TextView
+        android:id="@+id/l_current_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/l_name_box"
+        android:text="10"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"/>
+ 
+    <!-- Artist Name -->
+    <EditText
+        android:id="@+id/l_score_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/l_current_score"
+        android:textColor="#343434"
+        android:textSize="12sp"
+        android:layout_marginTop="1dip"
+        android:text="0"
+        android:inputType="numberDecimal" />
+ 
+
+ 
+     <!-- Rightend Arrow -->
+     <ImageButton 
+         android:id="@+id/l_add_button"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/l_score_input"
+        android:src="@android:drawable/btn_plus"
+         />
+ 
+</RelativeLayout>

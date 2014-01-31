@@ -1,20 +1,16 @@
 package com.example.scorer;
 
-import com.example.scorer.util.SystemUiHider;
+import java.util.ArrayList;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnTouchListener;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import java.util.HashMap;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -25,7 +21,8 @@ import android.widget.Toast;
 public class MainScreen extends Activity {
 	
 	private static int scoreLimit;
-	private static ArrayAdapter<String> playerListAdaptar;
+	private static PlayerListAdapter playerListAdaptar;
+	private static ArrayList<PlayerDetails> playerList;
 	Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +31,22 @@ public class MainScreen extends Activity {
         setContentView(R.layout.activity_main_screen);
         toast = Toast.makeText(this, "Invalid Score Limit", Toast.LENGTH_LONG);
         
-        playerListAdaptar = new ArrayAdapter<String>(this,
-    	        android.R.layout.simple_list_item_1);
+        playerList = new ArrayList<PlayerDetails>();
+        
+        playerListAdaptar = new PlayerListAdapter((Activity)this, playerList);
         
         ListView playerList = (ListView) findViewById(R.id.list_of_players_view);
     	playerList.setAdapter(playerListAdaptar);
-
+    	
+//    	// Click event for single list row
+//    	playerList.setOnClickListener(new OnClickListener() {
+//    		@Override
+//    		public void onClick(View v) {
+//    			// TODO Auto-generated method stub
+//    			
+//    		}
+//		});
+    	
     }
     
     /** Called when the user touches the start button */
