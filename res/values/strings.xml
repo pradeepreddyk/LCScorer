@@ -6,5 +6,8 @@
     <string name="score_limit_string">Score Limit</string>
     <string name="start_string">Start</string>
     <string name="faded_backgroung_text">SCORER</string>
+    <string name="default_score">0</string>
+    <string name="default_name">NA</string>
+    <string name="help">Help</string>
 
 </resources>

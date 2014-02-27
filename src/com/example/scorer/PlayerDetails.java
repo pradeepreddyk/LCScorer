@@ -1,41 +1,48 @@
 package com.example.scorer;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedList;
 
-public class PlayerDetails extends HashMap<String, String>{
+public class PlayerDetails {
+		private String name = "name";
+		private int id = 0;
+		private int score = 0;
+		private LinkedList<Integer> scoreLog;
+		public String getName() {
+			return name;
+		}
 
-	    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-		static final String KEY_NAME = "name";
-	    static final String KEY_ID = "id";
-	    static final String KEY_SCORE = "score";
-	    static final String KEY_SCORE_LOG = "score_log";
-		public PlayerDetails() {
-			super();
-			// TODO Auto-generated constructor stub
+		public void setName(String name) {
+			this.name = name;
 		}
-		public PlayerDetails(int capacity, float loadFactor) {
-			super(capacity, loadFactor);
-			// TODO Auto-generated constructor stub
+
+		public int getId() {
+			return id;
 		}
-		public PlayerDetails(int capacity) {
-			super(capacity);
-			// TODO Auto-generated constructor stub
+
+		public void setId(int id) {
+			this.id = id;
 		}
-		public PlayerDetails(Map<? extends String, ? extends String> map) {
-			super(map);
-			// TODO Auto-generated constructor stub
+
+		public int getScore() {
+			return score;
 		}
+
+		public void setScore(int score) {
+			this.score = score;
+		}
+
+		public LinkedList<Integer> getScoreLog() {
+			return scoreLog;
+		}
+
+		public void setScoreLog(LinkedList<Integer> scoreLog) {
+			this.scoreLog = scoreLog;
+		}
+
 		
 		public PlayerDetails(String name) {
-			
-			this.put(KEY_NAME, name);
-			this.put(KEY_ID, "-1");
-			this.put(KEY_SCORE, "0");
-			this.put(KEY_SCORE_LOG, "0");
+			this.name = name;
+			scoreLog = new LinkedList<Integer>();
 		}
 
 }

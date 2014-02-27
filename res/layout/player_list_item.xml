@@ -10,18 +10,25 @@
     <LinearLayout android:id="@+id/l_name_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:padding="3dip"
         android:layout_alignParentLeft="true"
         android:background="@drawable/image_bg"
+        android:focusable="false"
         android:layout_marginRight="5dip">
         
-        <TextView 
+        <EditText 
             android:id= "@+id/l_player_name"
-            android:layout_width="50dip"
+            android:layout_width="80dip"
             android:layout_height="30dip"
-            android:text="PRAD"
+            android:gravity="center_vertical"
+            android:text="@string/default_name"
             android:textColor="#040404"
+            android:background="@android:color/transparent"
+            android:ems="6"
+            android:inputType="textCapCharacters"
             android:textSize="25sp"
+            android:focusable="false"
             android:textStyle="bold"/>
     </LinearLayout>
  
@@ -30,34 +37,41 @@
         android:id="@+id/l_current_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/l_name_box"
-        android:text="10"
+        android:text="@string/default_score"
         android:textColor="#040404"
         android:typeface="sans"
-        android:textSize="15dip"
+        android:ems="6"
+        android:textSize="15sp"
+        android:focusable="false"
         android:textStyle="bold"/>
+    
+         <!-- Rightend Arrow -->
+     <ImageView 
+         android:id="@+id/l_add_button"
+         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:src="@android:drawable/arrow_down_float"
+         />
  
-    <!-- Artist Name -->
+    <!-- input score -->
     <EditText
         android:id="@+id/l_score_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/l_current_score"
+        android:layout_toLeftOf="@id/l_add_button"
+        android:layout_centerVertical="true"
         android:textColor="#343434"
-        android:textSize="12sp"
+        android:textSize="15sp"
+        android:ems="6"
         android:layout_marginTop="1dip"
-        android:text="0"
-        android:inputType="numberDecimal" />
- 
-
- 
-     <!-- Rightend Arrow -->
-     <ImageButton 
-         android:id="@+id/l_add_button"
-         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/l_score_input"
-        android:src="@android:drawable/btn_plus"
-         />
+        android:inputType="numberDecimal"
+        
+        android:focusable="false"
+        android:background="@android:color/white"/>
  
 </RelativeLayout>
