@@ -137,6 +137,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="270dp"
                 android:clickable="true"
+                android:descendantFocusability="beforeDescendants"
                 android:listSelector="@color/item_selected" >
             </ListView>
         </LinearLayout>

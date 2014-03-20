@@ -4,26 +4,19 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.method.KeyListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
-import java.util.HashMap;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -32,166 +25,151 @@ import java.util.HashMap;
  * @see SystemUiHider
  */
 public class MainScreen extends Activity {
-	
+
 	private static int scoreLimit;
 	private static PlayerListAdapter playerListAdaptar;
 	private static ArrayList<PlayerDetails> playerList;
 	Toast toast;
 	GameState state;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
- 
-        setContentView(R.layout.activity_main_screen);
-        toast = Toast.makeText(this, "Invalid Score Limit", Toast.LENGTH_LONG);
-        
-        state = GameState.PAUSED;
-        
-        playerList = new ArrayList<PlayerDetails>();
-        
-        playerListAdaptar = new PlayerListAdapter(this, R.layout.player_list_item, playerList);
-        
-        ListView playerListView = (ListView) findViewById(R.id.list_of_players_view);
-    	playerListView.setAdapter(playerListAdaptar);
-    	
-//    	playerListView.setOnTouchListener(new OnTouchListener() {
-//			
-//			@Override
-//			public boolean onTouch(View arg0, MotionEvent arg1) {
-//				myToast("setOnTouchListener", true);
-//				// TODO Auto-generated method stub
-//				return false;
-//			}
-//		});
-    	
-    	
-    	// Click event for single list row
-    	playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main_screen);
+		toast = Toast.makeText(this, "Invalid Score Limit", Toast.LENGTH_LONG);
+		state = GameState.PAUSED;
+
+		playerList = new ArrayList<PlayerDetails>();
+		playerListAdaptar = new PlayerListAdapter(this, R.layout.player_list_item, playerList);
+		ListView playerListView = (ListView) findViewById(R.id.list_of_players_view);
+		playerListView.setAdapter(playerListAdaptar);
+
+		// Click event for single list row
+		playerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
 			@Override
 			public void onItemClick(AdapterView<?> adapter, View view, int position,
 					long arg3) {
 				View vi=view;
-		        LayoutInflater inflater = getLayoutInflater();
-		        if(view==null)
-		            vi = inflater.inflate(R.layout.player_list_item, null);
-		        
-		        myToast("clicked " + position + "val " + arg3, true);
-		 
-		        EditText newScore = (EditText)vi.findViewById(R.id.l_score_input); // new score
-		        //ImageButton add=(ImageButton)vi.findViewById(R.id.l_add_button); // add button
-		        newScore.setVisibility(View.VISIBLE);
-		        Button startButton = (Button) findViewById(R.id.start_button);
+				LayoutInflater inflater = getLayoutInflater();
+				if(view==null)
+					vi = inflater.inflate(R.layout.player_list_item, null);
+
+				myToast("clicked " + position + "val " + arg3);
+
+				EditText newScore = (EditText)vi.findViewById(R.id.l_score_input); // new score
+				//ImageButton add=(ImageButton)vi.findViewById(R.id.l_add_button); // add button
+				newScore.setVisibility(View.VISIBLE);
+
+				Button startButton = (Button) findViewById(R.id.start_button);
 				startButton.setVisibility(View.VISIBLE);
 			}
 		}); 
-    }
-    
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_layout, menu);
-        return true;
-    }
-    
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.menu_add_player:
-            	View playerInput = (View) findViewById(R.id.player_name_input_layout);
-        		playerInput.setVisibility(View.VISIBLE);
-        		pauseGame();
-                return true;
-            case R.id.menu_help:
-            	myToast("Help pressed.. Please Help", true);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    
-    public void pauseGame()
-    {
-    	Button startButton = (Button) findViewById(R.id.start_button);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_layout, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle item selection
+		switch (item.getItemId()) {
+		case R.id.menu_add_player:
+			View playerInput = (View) findViewById(R.id.player_name_input_layout);
+			playerInput.setVisibility(View.VISIBLE);
+			pauseGame();
+			return true;
+		case R.id.menu_help:
+			myToast("Help pressed.. Please Help");
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+
+	public void pauseGame()
+	{
+		Button startButton = (Button) findViewById(R.id.start_button);
 		startButton.setVisibility(View.VISIBLE);
+		startButton.setText("Start");
 		state = GameState.PAUSED;
-    }
-    
-    public void myToast(String text, Boolean flag)
-    {
-    	if(toast!=null && flag)
-    	{
-    		toast.cancel();
-    	}
-    	toast = Toast.makeText(this, text , Toast.LENGTH_LONG);
+	}
+
+	public void myToast(String text)
+	{
+		myToast(text,true);
+	}
+	
+	public void myToast(String text, Boolean flag)
+	{
+		Log.d("TOAST_LOG",text);
+		if(toast!=null && flag)
+		{
+			toast.cancel();
+		}
+		toast = Toast.makeText(this, text , Toast.LENGTH_LONG);
 		toast.show();
-    }
-    /** Called when the user touches the start button */
-    public void startGame(View view) {
-    	//verify non null score
-    	if(state == GameState.PAUSED)
-    	{
-    		EditText scoreLimitEditor = (EditText) findViewById(R.id.score_limit_editor);
-    		try{
-    			scoreLimit = Integer.parseInt(scoreLimitEditor.getText().toString());
-    		}
-    		catch (NumberFormatException e)
-    		{
-    			myToast("Invalid Score Limit", false);
-    			return;
-    		}
-    		myToast("Score Limit "+scoreLimit, false);
+	}
+	
+	/** Called when the user touches the start button */
+	public void startGame(View view) {
+		//verify non null score
+		if(state == GameState.PAUSED)
+		{
+			EditText scoreLimitEditor = (EditText) findViewById(R.id.score_limit_editor);
+			try{
+				scoreLimit = Integer.parseInt(scoreLimitEditor.getText().toString());
+			}
+			catch (NumberFormatException e)
+			{
+				myToast("Invalid Score Limit", false);
+				return;
+			}
+			myToast("Score Limit "+scoreLimit, false);
 
-    		if(playerListAdaptar.getCount() < 2)
-    		{
-    			myToast("Add Atleast 2 players", true);
-    			return;
-    		}
-    		else
-    		{
-    			myToast(playerListAdaptar.getCount() + " players present", true);
-    		}
-    		View scoreInput = (View) findViewById(R.id.score_input_layout);
-    		scoreInput.setVisibility(View.GONE);
+			if(playerListAdaptar.getCount() < 2)
+			{
+				myToast("Add Atleast 2 players", true);
+				return;
+			}
+			else
+			{
+				myToast(playerListAdaptar.getCount() + " players present", true);
+			}
+			View scoreInput = (View) findViewById(R.id.score_input_layout);
+			scoreInput.setVisibility(View.GONE);
 
-    		View playerInput = (View) findViewById(R.id.player_name_input_layout);
-    		playerInput.setVisibility(View.GONE);
-    		this.setTitle("Score Limit is "+ scoreLimit);
+			View playerInput = (View) findViewById(R.id.player_name_input_layout);
+			playerInput.setVisibility(View.GONE);
+			this.setTitle("Score Limit is "+ scoreLimit);
 
-    		Button startButton = (Button) findViewById(R.id.start_button);
-    		startButton.setText("Add");
-    		startButton.setVisibility(View.INVISIBLE);
-    		state = GameState.STARTED;
-    	}
-    	else if(state == GameState.STARTED)
-    	{
-    		
-    	}
-    }
-    
-    
-    /** Called when the user touches the start button */
-    public void addPlayer(View view) {
-    	//verify non null score
-    	EditText playerNameEditor = (EditText) findViewById(R.id.user_name_editor);
-    	
-    	String playerName = playerNameEditor.getText().toString();
-    	playerNameEditor.setText("");
-    	if(playerName == null || playerName.trim().isEmpty())
-    	{
-    		myToast( "Enter Valid Player Name", true);
-    		return;
-    	}
-    	
-    	for(int i = 0 ; i<playerList.size(); i++)
-    	{
-    		Log.i("PRADEEP","Player details are "+ playerList.get(i).getName());
-    	}
- 
-    	playerListAdaptar.add(new PlayerDetails(playerName));
-    	
-    	myToast("Player "+playerName+ " added", true);
-    }
+			Button startButton = (Button) findViewById(R.id.start_button);
+			startButton.setText("Add");
+			startButton.setVisibility(View.INVISIBLE);
+			state = GameState.STARTED;
+		}
+		else if(state == GameState.STARTED)
+		{
 
+		}
+	}
+
+
+	/** Called when the user touches the start button */
+	public void addPlayer(View view) {
+		//verify non null score
+		EditText playerNameEditor = (EditText) findViewById(R.id.user_name_editor);
+		String playerName = playerNameEditor.getText().toString();
+		playerNameEditor.setText("");
+		if(playerName == null || playerName.trim().isEmpty())
+		{
+			myToast( "Enter Valid Player Name", true);
+			return;
+		}
+		playerListAdaptar.add(new PlayerDetails(playerName));
+		myToast("Player "+playerName+ " added", true);
+	}
 }
