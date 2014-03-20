@@ -35,10 +35,15 @@ public class PlayerDetails {
 			return scoreLog;
 		}
 
-		public void setScoreLog(LinkedList<Integer> scoreLog) {
-			this.scoreLog = scoreLog;
+		public void addScore (Integer value) {
+			this.scoreLog.add(value);
+			score+=value;
 		}
 
+		public void undoScore () {
+			int value = this.scoreLog.remove();
+			score-=value;
+		}
 		
 		public PlayerDetails(String name) {
 			this.name = name;

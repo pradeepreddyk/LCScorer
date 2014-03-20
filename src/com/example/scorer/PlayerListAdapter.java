@@ -36,6 +36,7 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerDetails> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View vi=convertView;
+        PlayerHolder holder = null;
         if(convertView==null)
         {
         	LayoutInflater inflater = ((Activity)context).getLayoutInflater();
@@ -45,11 +46,31 @@ public class PlayerListAdapter extends ArrayAdapter<PlayerDetails> {
         TextView playerName = (TextView)vi.findViewById(R.id.l_player_name); // name
         EditText newScore = (EditText)vi.findViewById(R.id.l_score_input); // new score
         newScore.setVisibility(View.GONE);
+        
         PlayerDetails player = data.get(position);
-
         // Setting all values in listview
-        playerName.setText(player.getName());
-        //currentScore.setText(player.getScore());
+        holder = new PlayerHolder();
+        holder.player = data.get(position);
+        holder.input = newScore;
+        holder.input.setTag(holder.player);
+        holder.name = playerName;
+        holder.value = (TextView)vi.findViewById(R.id.l_current_score);
+
+        vi.setTag(holder);
+
+        setupItem(holder);
         return vi;
+    }
+    
+    private void setupItem(PlayerHolder holder) {
+        holder.name.setText(holder.player.getName());
+        holder.value.setText(String.valueOf(holder.player.getScore()));
+    }
+
+    public static class PlayerHolder {
+        PlayerDetails player;
+        TextView name;
+        TextView value;
+        EditText input;
     }
 }

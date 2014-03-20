@@ -150,10 +150,46 @@ public class MainScreen extends Activity {
 			startButton.setText("Add");
 			startButton.setVisibility(View.INVISIBLE);
 			state = GameState.STARTED;
+			ListView playerListView = (ListView) findViewById(R.id.list_of_players_view);
+			for (int i = 0; i < playerListView.getChildCount(); i++)
+			{
+				View v = playerListView.getChildAt(i);
+				playerListAdaptar.getView(i, v, null);
+			}
 		}
 		else if(state == GameState.STARTED)
 		{
-
+			ListView playerListView = (ListView) findViewById(R.id.list_of_players_view);
+			int j = 0;
+			for (int i = 0; i < playerListView.getChildCount(); i++)
+			{
+			    View v = playerListView.getChildAt(i);
+			    int value = 0;
+			    EditText tx = (EditText) v.findViewById(R.id.l_score_input);
+			    try{
+			    value = Integer.parseInt(tx.getText().toString());
+			    }
+			    catch (Exception e)
+			    {
+			    	Log.e("PRADEEP",e.toString());
+			    	myToast("Please enter valid integers for score");
+			    	return;
+			    }
+			    playerList.get(j).addScore(value);
+			    Log.e("PRADEEP","Player "+ i + " Score for round is "+ tx.getText());
+			    tx.setText("");
+			    if(playerList.get(j).getScore() <= scoreLimit)
+			    {
+			    	playerListAdaptar.getView(i, v, null);
+			    }
+			    else
+			    {
+			    	playerListAdaptar.remove(playerList.get(i));
+			    	Log.e("PRADEEP","sizes are "+ playerList.size() + " " + playerListAdaptar.getCount());
+			    	j--;
+			    }
+			    j++;
+			}
 		}
 	}
 
