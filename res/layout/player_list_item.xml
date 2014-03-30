@@ -18,8 +18,8 @@
         
         <TextView 
             android:id= "@+id/l_player_name"
-            android:layout_width="80dip"
-            android:layout_height="30dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:text="@string/default_name"
             android:textColor="#040404"
@@ -53,12 +53,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/l_name_box"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/l_dummy"
         android:layout_alignParentTop="true"
         android:background="@android:color/white"
         android:ems="6"
         android:inputType="numberDecimal"
         android:textColor="#343434"
         android:textSize="15sp" />
+     <TextView
+        android:id="@+id/l_dummy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:text=""
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:ems="1"
+        android:textSize="15sp"
+        android:focusable="false"
+        android:textStyle="bold"/>
  
 </RelativeLayout>
