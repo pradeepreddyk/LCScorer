@@ -30,6 +30,93 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true" >
 
+
+        <LinearLayout
+            android:id="@+id/added_palyer_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" >
+
+			<RelativeLayout
+			    android:id="@+id/score_input_layout"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" 
+			    style="?buttonBarStyle"
+                android:background="@color/black_overlay"
+                tools:ignore="UselessParent">
+
+                <TextView
+                    android:id="@+id/score_limit_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:keepScreenOn="true"
+                    android:text="@string/score_limit_string"
+                    android:textColor="@color/theamed_blue"
+                    android:layout_margin="4dip"
+                    android:textSize="30sp" />
+
+                <EditText
+                    android:id="@+id/score_limit_editor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/score_limit_textview"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignTop="@id/score_limit_textview"
+                    android:background="@color/background_color"
+                    android:ems="6"
+                    android:hint="Enter Score"
+                    android:paddingRight="5dip"
+                    android:inputType="number" >
+
+                    <requestFocus />
+                </EditText>
+                
+                <EditText
+                    android:id="@+id/user_name_editor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/add_player_button"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignTop="@+id/add_player_button"
+                    android:layout_below="@id/score_limit_textview"
+                    android:layout_margin="5dip"
+                    android:layout_toLeftOf="@+id/score_limit_editor"
+                    android:background="@color/background_color"
+                    android:ems="8"
+                    android:hint="Player Name"
+                    android:inputType="textCapCharacters" >
+
+                    <requestFocus />
+                </EditText>
+                
+                <ImageButton
+                    android:id="@+id/add_player_button"
+                    style="?buttonBarButtonStyle"
+                    
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="addPlayer"
+                    android:layout_toRightOf="@id/user_name_editor"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignLeft="@id/score_limit_editor"
+                    android:layout_below="@id/score_limit_textview"
+                    android:src="@android:drawable/ic_input_add"
+                    android:text="@string/add_palyer_string" />
+            </RelativeLayout>
+
+            <ListView
+                android:id="@+id/list_of_players_view"
+                android:layout_width="wrap_content"
+                android:layout_height="270dp"
+                android:clickable="true"
+                android:descendantFocusability="beforeDescendants"
+                android:listSelector="@color/item_selected" >
+            </ListView>
+        </LinearLayout>
+        
+        
         <LinearLayout
             android:id="@+id/fullscreen_content_controls"
             android:layout_width="match_parent"
@@ -49,91 +136,6 @@
                 android:text="@string/start_string" 
                 android:textColor="@color/theamed_blue"/>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/added_palyer_list_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top|center_horizontal"
-            android:orientation="vertical"
-            tools:ignore="UselessParent" >
-
-            <LinearLayout
-                android:id="@+id/score_input_layout"
-                style="?buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black_overlay"
-                android:orientation="horizontal"
-                tools:ignore="UselessParent" >
-
-                <TextView
-                    android:id="@+id/score_limit_textview"
-                    android:layout_width="0dip"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="5"
-                    android:keepScreenOn="true"
-                    android:text="@string/score_limit_string"
-                    android:textColor="@color/theamed_blue"
-                    android:textSize="30sp" />
-
-                <EditText
-                    android:id="@+id/score_limit_editor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/background_color"
-                    android:ems="5"
-                    android:hint="Enter Score"
-                    android:inputType="number" >
-
-                    <requestFocus />
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/player_name_input_layout"
-                style="?buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/black_overlay"
-                android:orientation="horizontal"
-                tools:ignore="UselessParent" >
-
-                <EditText
-                    android:id="@+id/user_name_editor"
-                    android:layout_width="0dip"
-                    android:layout_height="match_parent"
-                    android:layout_margin="10dp"
-                    android:layout_weight="6"
-                    android:background="@color/background_color"
-                    android:hint="Player Name"
-                    android:inputType="textCapCharacters" >
-
-                    <requestFocus />
-                </EditText>
-
-                <ImageButton
-                    android:id="@+id/add_player_button"
-                    style="?buttonBarButtonStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="1"
-                    android:onClick="addPlayer"
-                    android:src="@android:drawable/ic_input_add"
-                    android:text="@string/add_palyer_string" />
-            </LinearLayout>
-
-            <ListView
-                android:id="@+id/list_of_players_view"
-                android:layout_width="wrap_content"
-                android:layout_height="270dp"
-                android:clickable="true"
-                android:descendantFocusability="beforeDescendants"
-                android:listSelector="@color/item_selected" >
-            </ListView>
         </LinearLayout>
     </FrameLayout>
 

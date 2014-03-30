@@ -78,8 +78,12 @@ public class MainScreen extends Activity {
 		// Handle item selection
 		switch (item.getItemId()) {
 		case R.id.menu_add_player:
-			View playerInput = (View) findViewById(R.id.player_name_input_layout);
+			View playerInput = (View) findViewById(R.id.score_input_layout);
 			playerInput.setVisibility(View.VISIBLE);
+			View scoreLimitText = (View) findViewById(R.id.score_limit_textview);
+			scoreLimitText.setVisibility(View.GONE);
+			View scoreLimitEditor = (View) findViewById(R.id.score_limit_editor);
+			scoreLimitEditor.setVisibility(View.GONE);
 			pauseGame();
 			return true;
 		case R.id.menu_help:
@@ -142,8 +146,6 @@ public class MainScreen extends Activity {
 			View scoreInput = (View) findViewById(R.id.score_input_layout);
 			scoreInput.setVisibility(View.GONE);
 
-			View playerInput = (View) findViewById(R.id.player_name_input_layout);
-			playerInput.setVisibility(View.GONE);
 			this.setTitle("Score Limit is "+ scoreLimit);
 
 			Button startButton = (Button) findViewById(R.id.start_button);
