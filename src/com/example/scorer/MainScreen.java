@@ -171,21 +171,19 @@ public class MainScreen extends Activity {
 			    }
 			    catch (Exception e)
 			    {
-			    	Log.e("PRADEEP",e.toString());
 			    	myToast("Please enter valid integers for score");
 			    	return;
 			    }
 			    playerList.get(j).addScore(value);
-			    Log.e("PRADEEP","Player "+ i + " Score for round is "+ tx.getText());
 			    tx.setText("");
 			    if(playerList.get(j).getScore() <= scoreLimit)
 			    {
-			    	playerListAdaptar.getView(i, v, null);
+			    	playerListAdaptar.getView(j, v, null);
 			    }
 			    else
 			    {
-			    	playerListAdaptar.remove(playerList.get(i));
-			    	Log.e("PRADEEP","sizes are "+ playerList.size() + " " + playerListAdaptar.getCount());
+			    	myToast("Player " + playerList.get(j).getName() + " is out of Game");
+			    	playerListAdaptar.remove(playerList.get(j));
 			    	j--;
 			    }
 			    j++;
