@@ -47,18 +47,18 @@
     
     
     <!-- input score -->
+
     <EditText
         android:id="@+id/l_score_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/l_name_box"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:textColor="#343434"
-        android:textSize="15sp"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/white"
         android:ems="6"
-        android:layout_marginTop="1dip"
         android:inputType="numberDecimal"
-        
-        android:background="@android:color/white"/>
+        android:textColor="#343434"
+        android:textSize="15sp" />
  
 </RelativeLayout>

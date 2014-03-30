@@ -4,5 +4,8 @@
     <color name="item_selected">#66660000</color>
     <color name="background_color">#ffffffff</color>
     <color name="button_color">#ff222222</color>
+    <color name="button_text_color">#ff666666</color>
+    <color name="white_background">#ffffffff</color>
+    <color name="theamed_blue">#ff33b5e5</color>
 
 </resources>
