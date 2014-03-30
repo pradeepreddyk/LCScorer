@@ -1,4 +1,4 @@
-package com.example.scorer;
+package com.appsforfunnutility.scorer;
 
 public enum GameState {
 	
