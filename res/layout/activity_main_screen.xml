@@ -47,31 +47,6 @@
                 android:background="@color/black_overlay"
                 tools:ignore="UselessParent">
 
-                <TextView
-                    android:id="@+id/score_limit_textview"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:keepScreenOn="true"
-                    android:text="@string/score_limit_string"
-                    android:textColor="@color/theamed_blue"
-                    android:layout_margin="4dip"
-                    android:textSize="30sp" />
-
-                <EditText
-                    android:id="@+id/score_limit_editor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/score_limit_textview"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignTop="@id/score_limit_textview"
-                    android:background="@color/background_color"
-                    android:ems="6"
-                    android:hint="Enter Score"
-                    android:paddingRight="5dip"
-                    android:inputType="number" >
-
-                    <requestFocus />
-                </EditText>
                 
                 <EditText
                     android:id="@+id/user_name_editor"
@@ -80,9 +55,7 @@
                     android:layout_alignBottom="@+id/add_player_button"
                     android:layout_alignParentLeft="true"
                     android:layout_alignTop="@+id/add_player_button"
-                    android:layout_below="@id/score_limit_textview"
                     android:layout_margin="5dip"
-                    android:layout_toLeftOf="@+id/score_limit_editor"
                     android:background="@color/background_color"
                     android:ems="8"
                     android:hint="Player Name"
@@ -100,8 +73,6 @@
                     android:onClick="addPlayer"
                     android:layout_toRightOf="@id/user_name_editor"
                     android:layout_alignParentRight="true"
-                    android:layout_alignLeft="@id/score_limit_editor"
-                    android:layout_below="@id/score_limit_textview"
                     android:src="@android:drawable/ic_input_add"
                     android:text="@string/add_palyer_string" />
             </RelativeLayout>

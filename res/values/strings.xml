@@ -3,6 +3,7 @@
 
     <string name="app_name">Scorer</string>
     <string name="add_palyer_string">Add Player</string>
+    <string name="set_score_string">Set Score Limit</string>
     <string name="score_limit_string">Score Limit</string>
     <string name="start_string">Start</string>
     <string name="faded_backgroung_text">SCORER</string>

@@ -3,7 +3,10 @@ package com.appsforfunnutility.scorer;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -64,6 +67,43 @@ public class MainScreen extends Activity {
 				startButton.setVisibility(View.VISIBLE);
 			}
 		}); 
+		showScoreLimitPopup();
+	}
+	
+	private void showScoreLimitPopup(){
+		Log.e("PRADEEP","Before popup");
+		final EditText input = new EditText(this);
+		input.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+		input.setText(scoreLimit+"");
+		AlertDialog.Builder alert = new AlertDialog.Builder(this)
+	    .setTitle("Set Score Limit")
+	    .setMessage("")
+	    .setCancelable(true)
+	    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	        	Log.e("PRADEEP", "input is " + input.getText());
+				try{
+					scoreLimit = Integer.parseInt(input.getText().toString());
+					MainScreen.this.setTitle("Score Limit is "+ scoreLimit);
+				}
+				catch (NumberFormatException e)
+				{
+					myToast("Invalid Score Limit", false);
+					return;
+				}
+	        }
+	     })
+	    .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+	        public void onClick(DialogInterface dialog, int which) { 
+	            // do nothing
+	        }
+	     })
+	    .setIcon(android.R.drawable.ic_dialog_alert);
+		// Set an EditText view to get user input 
+		
+		alert.setView(input);
+	     alert.show();
+	     Log.e("PRADEEP","After	popup");
 	}
 
 	@Override
@@ -80,11 +120,10 @@ public class MainScreen extends Activity {
 		case R.id.menu_add_player:
 			View playerInput = (View) findViewById(R.id.score_input_layout);
 			playerInput.setVisibility(View.VISIBLE);
-			View scoreLimitText = (View) findViewById(R.id.score_limit_textview);
-			scoreLimitText.setVisibility(View.GONE);
-			View scoreLimitEditor = (View) findViewById(R.id.score_limit_editor);
-			scoreLimitEditor.setVisibility(View.GONE);
 			pauseGame();
+			return true;
+		case R.id.menu_set_score:
+			showScoreLimitPopup();
 			return true;
 		case R.id.menu_help:
 			myToast("Help pressed.. Please Help");
@@ -123,15 +162,13 @@ public class MainScreen extends Activity {
 		//verify non null score
 		if(state == GameState.PAUSED)
 		{
-			EditText scoreLimitEditor = (EditText) findViewById(R.id.score_limit_editor);
-			try{
-				scoreLimit = Integer.parseInt(scoreLimitEditor.getText().toString());
-			}
-			catch (NumberFormatException e)
+			if (scoreLimit < -1)
 			{
 				myToast("Invalid Score Limit", false);
+				showScoreLimitPopup();
 				return;
 			}
+				
 			myToast("Score Limit "+scoreLimit, false);
 
 			if(playerListAdaptar.getCount() < 2)
@@ -146,7 +183,7 @@ public class MainScreen extends Activity {
 			View scoreInput = (View) findViewById(R.id.score_input_layout);
 			scoreInput.setVisibility(View.GONE);
 
-			this.setTitle("Score Limit is "+ scoreLimit);
+			
 
 			Button startButton = (Button) findViewById(R.id.start_button);
 			startButton.setText("Add");
